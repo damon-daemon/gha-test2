@@ -1,0 +1,18 @@
+name: Print Message
+on:
+  workflow_dispatch:
+    inputs:
+      deployParameters:
+        required: true
+        description: 'Deploy parameters'
+
+env:
+  DEPLOY_PARAMETERS: ${{ inputs.deployParameters }}
+
+jobs:
+  create-release-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release YAML
+        run: |
+          echo $DEPLOY_PARAMETERS
