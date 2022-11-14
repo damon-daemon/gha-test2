@@ -21,7 +21,7 @@ jobs:
   create-output:
     runs-on: ubuntu-latest
     outputs: 
-      CdkOutZipSha: ${{ steps.create-output.CDK_OUT_ZIP_SHA256 }}
+      CdkOutZipSha: ${{ steps.create-output.outputs.CDK_OUT_ZIP_SHA256 }}
     steps:
       - name: Create output
         id: create-output
