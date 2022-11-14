@@ -1,18 +1,18 @@
 name: Print Message
 on:
-  workflow_dispatch:
-    inputs:
-      serviceId:
-        required: true
-        description: 'Deploy parameters'
-      semanticVersion:
-        required: true
-      repositoryName:
-        required: true
-      awsRegion:
-        required: true
-      cdkOutZipSha:
-        required: true
+  workflow_dispatch: {}
+    # inputs:
+    #   serviceId:
+    #     required: true
+    #     description: 'Deploy parameters'
+    #   semanticVersion:
+    #     required: true
+    #   repositoryName:
+    #     required: true
+    #   awsRegion:
+    #     required: true
+    #   cdkOutZipSha:
+    #     required: true
 
 env:
   DEPLOY_PARAMETERS: ${{ inputs.deployParameters }}
@@ -29,4 +29,5 @@ jobs:
   echo-output:
     runs-on: ubuntu-latest
     steps:
-      run: echo ${{ steps.create-output.CDK_OUT_ZIP_SHA256.test }}
+      - name: Echo output
+        run: echo ${{ steps.create-output.CDK_OUT_ZIP_SHA256.test }}
