@@ -20,7 +20,8 @@ env:
 jobs:
   create-output:
     runs-on: ubuntu-latest
-    output: ${{ steps.create-output.CDK_OUT_ZIP_SHA256.test }}
+    outputs: 
+      CdkOutZipSha: ${{ steps.create-output.CDK_OUT_ZIP_SHA256 }}
     steps:
       - name: Create output
         id: create-output
@@ -30,4 +31,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo output
-        run: echo ${{ steps.create-output.CDK_OUT_ZIP_SHA256.test }}
+        run: echo ${{ steps.create-output.CdkOutZipSha }}
