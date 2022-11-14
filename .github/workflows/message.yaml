@@ -18,9 +18,15 @@ env:
   DEPLOY_PARAMETERS: ${{ inputs.deployParameters }}
 
 jobs:
-  create-release-artifacts:
+  create-output:
+    runs-on: ubuntu-latest
+    output: ${{ steps.create-output.CDK_OUT_ZIP_SHA256.test }}
+    steps:
+      - name: Create output
+        id: create-output
+        run: |
+          echo "CDK_OUT_ZIP_SHA256=value" >> $GITHUB_OUTPUT
+  echo-output:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Release YAML
-        run: |
-          echo $DEPLOY_PARAMETERS
+      run: echo ${{ steps.create-output.CDK_OUT_ZIP_SHA256.test }}
