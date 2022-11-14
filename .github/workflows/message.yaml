@@ -42,10 +42,10 @@ jobs:
     steps:
       - name: Get sha256sum of cdk.out.zip
         id: get-cdk-out-zip-sha
-        run: echo "CDK_OUT_ZIP_SHA256=$(sha256sum discover/cdk.out.zip)" >> $GITHUB_OUTPUT
+        run: echo "CDK_OUT_ZIP_SHA256=some_value" >> $GITHUB_OUTPUT
 
   job2:
     runs-on: ubuntu-latest
-    needs: job1
+    needs: [add-cdk-out-to-release]
     steps:
       - run: echo ${{needs.add-cdk-out-to-release.outputs.CdkOutZipSha}}
