@@ -34,18 +34,12 @@ on:
 #         run: echo ${{ needs.create-output.outputs.CdkOutZipSha }}
 
 jobs:
-  add-cdk-out-to-release:
+  echo:
     runs-on: ubuntu-latest
-    # Map a step output to a job output
-    outputs:
-      CdkOutZipSha: ${{ steps.get-cdk-out-zip-sha.outputs.CDK_OUT_ZIP_SHA256 }}
     steps:
-      - name: Get sha256sum of cdk.out.zip
+      - name: Check if yq and jq are installed
         id: get-cdk-out-zip-sha
-        run: echo "CDK_OUT_ZIP_SHA256=some_value" >> $GITHUB_OUTPUT
+        run: |
+          jq --help
+          yq --help
 
-  job2:
-    runs-on: ubuntu-latest
-    needs: [add-cdk-out-to-release]
-    steps:
-      - run: echo ${{needs.add-cdk-out-to-release.outputs.CdkOutZipSha}}
